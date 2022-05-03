@@ -26,7 +26,7 @@ Creates a common gateway to relevant microservices. Routes API requests based on
 Loads eureka configurations
 https://github.com/mwaijohn/config-server
 
+add zipkin server to monitor logs
 
-
-
+docker run -d -p 9411:9411 openzipkin/zipkin
 
