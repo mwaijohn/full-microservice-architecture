@@ -30,3 +30,4 @@ add zipkin server to monitor logs
 
 docker run -d -p 9411:9411 openzipkin/zipkin
 
+https://youtu.be/BnknNTN8icw
