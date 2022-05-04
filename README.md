@@ -31,3 +31,19 @@ add zipkin server to monitor logs
 docker run -d -p 9411:9411 openzipkin/zipkin
 
 https://youtu.be/BnknNTN8icw
+
+### Services URLs
+
+config server url = http://localhost:9296
+
+cloud gateway url = http://localhost:9191
+
+service registry url = http://localhost:8761
+
+department service url = http://localhost:9001
+
+user service url = http:localhost:9002
+
+### end points
+
+https://www.getpostman.com/collections/c26778c7eec72911f135
