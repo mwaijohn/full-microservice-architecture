@@ -42,7 +42,7 @@ service registry url = http://localhost:8761
 
 department service url = http://localhost:9001
 
-user service url = http:localhost:9002
+user service url = http://localhost:9002
 
 ### end points
 
