@@ -1,0 +1,71 @@
+# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
+version: '3'
+
+#Define services
+services:
+  # fetches eureka client configurations
+  config-server-service:
+    build: ./cloud-config-server/cloud-config-server
+    container_name: server-config-service
+    ports:
+      - 9296:9296 
+    networks:
+      - microservice-network
+    
+      
+  #department Spring Boot Application
+  department-service:
+    build: ./department/department
+    container_name: department-service
+    ports:
+      - 9001:9001 # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    networks:
+      - microservice-network
+
+  user-service:
+    build: ./user-service/user-service
+    container_name: user-service
+    ports:
+      - 9002:9002
+    links:
+      - department-service
+    networks:
+      - microservice-network
+
+  # manage api using url path
+  cloud-gateway-service:
+    build: ./cloud-gateway/cloud-gateway
+    container_name: cloud-gateway-service
+    ports:
+      - 9191:9191
+    links:
+      - user-service
+      - department-service
+    networks:
+      - microservice-network
+
+  #monitor registered services
+  service-registry-service:
+    build: ./service-registry/service-registry
+    container_name: service-registry-service
+    ports:
+      - 8761:8761 
+    networks:
+      - microservice-network
+  #Fron-end Angular Application
+#  scrum-ui:
+#    build: ./scrum-ui
+#    container_name: scrum-ui
+#    ports:
+#      - 4200:80
+#    links:
+#      - scrum-app
+
+#Volumes for DB data
+volumes:
+  scrum-data:
+
+
+networks:
+  microservice-network:
+    name: microservice-network
